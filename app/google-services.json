@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "196715206836",
+    "firebase_url": "https://glocha.firebaseio.com",
+    "project_id": "glocha",
+    "storage_bucket": "glocha.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196715206836:android:1069e2cdb8e9365d789fe1",
+        "android_client_info": {
+          "package_name": "com.example.glocha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "196715206836-gp7u32c4pvootreu2ce9hg8t7r6uuoaa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.glocha",
+            "certificate_hash": "b34b357e778fa34220aa8c04fd8d218de366742d"
+          }
+        },
+        {
+          "client_id": "196715206836-nu5gc9b4ionaijpo936pnrri4grelj46.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF_VghIGEa7zeRHYsqheRGXOYBxwKRhTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "196715206836-nu5gc9b4ionaijpo936pnrri4grelj46.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
