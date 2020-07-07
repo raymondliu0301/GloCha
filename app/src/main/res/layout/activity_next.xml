@@ -23,8 +23,19 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/relLayout_challenge"
+                android:layout_below="@id/relLayout1">
+
+                <!-- challenge name-->
+                <include layout = "@layout/snippet_next_challengebar"></include>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/relLayout1"
+                android:layout_below="@+id/relLayout_challenge"
                 android:id="@+id/relLayout2"
                 android:background="@drawable/grey_border_bottom">
 

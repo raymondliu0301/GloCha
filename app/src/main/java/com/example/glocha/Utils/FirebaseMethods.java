@@ -64,7 +64,7 @@ public class FirebaseMethods {
         }
     }
 
-    public void uploadNewPhoto (String photoType, final String caption, int count, String imgUrl, Bitmap bm){
+    public void uploadNewPhoto (String photoType, final String challenge, final String caption, int count, String imgUrl, Bitmap bm){
         Log.d(TAG, "uploadNewPhoto: attempting to upload new photo.");
 
         FilePaths filePaths = new FilePaths();
@@ -93,7 +93,7 @@ public class FirebaseMethods {
                         public void onSuccess(Uri uri) {
                             Uri firebaseUrl = uri;
                             //add the new photo to 'photos' node and 'user_photos' node
-                            addPhotoToDatabase(caption, firebaseUrl.toString());
+                            addPhotoToDatabase(challenge, caption, firebaseUrl.toString());
 
                             Toast.makeText(mContext, "photo upload success", Toast.LENGTH_SHORT).show();
                         }
@@ -126,8 +126,6 @@ public class FirebaseMethods {
         //case 2) change profile photo
         else if(photoType.equals(mContext.getString(R.string.profile_photo))){
             Log.d(TAG, "uploadNewPhoto: uploading New Profile photo.");
-
-
 
             String user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
             final StorageReference storageReference = mStorageReference
@@ -199,12 +197,13 @@ public class FirebaseMethods {
         return sdf.format(new Date());
     }
 
-    private void addPhotoToDatabase(String caption, String url){
+    private void addPhotoToDatabase(String challenge, String caption, String url){
         Log.d(TAG, "addPhotoToDatabase: adding photo to database");
 
         String tags = StringManipulation.getTags(caption);
         String newPhotoKey = myRef.child(mContext.getString(R.string.dbname_photos)).push().getKey();
         Photo photo = new Photo();
+        photo.setChallenge_name(challenge);
         photo.setCaption(caption);
         photo.setDate_created(getTimestamp());
         photo.setImage_path(url);

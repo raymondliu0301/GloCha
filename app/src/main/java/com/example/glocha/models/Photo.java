@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Photo implements Parcelable {
 
+    private String challenge_name;
     private String caption;
     private String date_created;
     private String image_path;
@@ -20,8 +21,9 @@ public class Photo implements Parcelable {
 
     }
 
-    public Photo(String caption, String date_created, String image_path, String photo_id, String user_id, String tags,
-                 List<Like> likes, List<Comment> comments) {
+    public Photo(String challenge_name, String caption, String date_created, String image_path,
+                 String photo_id, String user_id, String tags, List<Like> likes, List<Comment> comments) {
+        this.challenge_name = challenge_name;
         this.caption = caption;
         this.date_created = date_created;
         this.image_path = image_path;
@@ -33,6 +35,7 @@ public class Photo implements Parcelable {
     }
 
     protected Photo(Parcel in) {
+        challenge_name = in.readString();
         caption = in.readString();
         date_created = in.readString();
         image_path = in.readString();
@@ -52,6 +55,14 @@ public class Photo implements Parcelable {
             return new Photo[size];
         }
     };
+
+    public String getChallenge_name() {
+        return challenge_name;
+    }
+
+    public void setChallenge_name(String challenge_name) {
+        this.challenge_name = challenge_name;
+    }
 
     public String getCaption() {
         return caption;
@@ -117,14 +128,11 @@ public class Photo implements Parcelable {
         this.comments = comments;
     }
 
-    public static Creator<Photo> getCREATOR() {
-        return CREATOR;
-    }
-
     @Override
     public String toString() {
         return "Photo{" +
-                "caption='" + caption + '\'' +
+                "challenge_name='" + challenge_name + '\'' +
+                ", caption='" + caption + '\'' +
                 ", date_created='" + date_created + '\'' +
                 ", image_path='" + image_path + '\'' +
                 ", photo_id='" + photo_id + '\'' +
@@ -142,6 +150,7 @@ public class Photo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(challenge_name);
         dest.writeString(caption);
         dest.writeString(date_created);
         dest.writeString(image_path);

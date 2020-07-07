@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Raymond"
+                android:text="Default_username"
                 android:layout_toEndOf="@+id/profile_photo"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="20dp"
@@ -47,11 +47,22 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/relLayout_challenge"
+            android:layout_below="@id/relLayout1">
+
+            <include layout = "@layout/snippet_mainfeed_challengebar"/>
+
+        </RelativeLayout>
+
+
         <com.example.glocha.Utils.SquareImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/post_image"
-            android:layout_below="@id/relLayout1"
+            android:layout_below="@id/relLayout_challenge"
             android:scaleType="centerCrop"/>
 
         <RelativeLayout

@@ -70,7 +70,7 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
     static class ViewHolder{
         CircleImageView mprofileImage;
         String likesString;
-        TextView username, timeDelta, caption, likes, comments;
+        TextView username, timeDelta, caption, likes, comments, challenge;
         SquareImageView image;
         ImageView heartRed, heartWhite, comment;
 
@@ -101,6 +101,7 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
             holder.comment = (ImageView) convertView.findViewById(R.id.speech_bubble);
             holder.likes = (TextView) convertView.findViewById(R.id.image_likes);
             holder.comments = (TextView) convertView.findViewById(R.id.image_comments_link);
+            holder.challenge = (TextView) convertView.findViewById(R.id.challenge_name);
             holder.caption = (TextView) convertView.findViewById(R.id.image_caption);
             holder.timeDelta = (TextView) convertView.findViewById(R.id.image_time_posted);
             holder.mprofileImage = (CircleImageView) convertView.findViewById(R.id.profile_photo);
@@ -119,6 +120,9 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
 
         //get likes string
         getLikesString(holder);
+
+        //set the challenge name
+        holder.challenge.setText(getItem(position).getChallenge_name());
 
         //set the caption
         holder.caption.setText(getItem(position).getCaption());
