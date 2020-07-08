@@ -74,7 +74,7 @@ public class ViewPostFragment extends Fragment {
 
     //vars
     private Photo mPhoto;
-    private int mActivityNumber = 0;
+    private int mActivityNumber = 4;
     private String photoUsername;
     private String mProfileUrl;
     private UserAccountSettings mUserAccountSettings;
@@ -415,6 +415,7 @@ public class ViewPostFragment extends Fragment {
             mComments.setText("View all "+ mPhoto.getComments().size() + " comments");
         } else{
             mComments.setText("");
+
         }
 
         mComments.setOnClickListener(new View.OnClickListener() {

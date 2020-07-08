@@ -129,8 +129,10 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
 
         //set the comment
         List<Comment> comments = getItem(position).getComments();
+        Log.d(TAG, "getView: comment size: "+ comments.size());
         holder.comments.setText("View all " + comments.size() + " comments");
         holder.comments.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: loading comment thread for " + getItem(position).getPhoto_id());
