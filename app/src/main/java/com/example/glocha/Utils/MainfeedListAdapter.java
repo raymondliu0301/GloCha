@@ -125,7 +125,11 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
         holder.challenge.setText(getItem(position).getChallenge_name());
 
         //set the caption
-        holder.caption.setText(getItem(position).getCaption());
+        if(getItem(position).getCaption().equals("")){
+            holder.caption.setVisibility(View.GONE);
+        }else {
+            holder.caption.setText(getItem(position).getCaption());
+        }
 
         //set the comment
         List<Comment> comments = getItem(position).getComments();
@@ -136,6 +140,7 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: loading comment thread for " + getItem(position).getPhoto_id());
+                getItem(position).getComments().clear();
                 ((HomeActivity)mContext).onCommentThreadSelected(getItem(position),
                         mContext.getString(R.string.home_activity));
 
@@ -205,6 +210,7 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
                     holder.comment.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            getItem(position).getComments().clear();
                             ((HomeActivity)mContext).onCommentThreadSelected(getItem(position),
                                     mContext.getString(R.string.home_activity));
 
@@ -478,10 +484,10 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
         }
     }
 
-    private void setupLikesString (final ViewHolder holder, String likesString){
+    private void setupLikesString (final ViewHolder holder, String likesString) {
         Log.d(TAG, "setupLikesString: likes string: " + holder.likesString);
 
-        if (holder.likeByCurrentUser){
+        if (holder.likeByCurrentUser) {
             Log.d(TAG, "setupLikesString: photo is liked by current user");
             holder.heartWhite.setVisibility(View.GONE);
             holder.heartRed.setVisibility(View.VISIBLE);
@@ -491,7 +497,7 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
                     return holder.detector.onTouchEvent(event);
                 }
             });
-        } else{
+        } else {
             Log.d(TAG, "setupLikesString: photo is not liked by current user");
             holder.heartWhite.setVisibility(View.VISIBLE);
             holder.heartRed.setVisibility(View.GONE);
@@ -503,7 +509,11 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
             });
 
         }
-        holder.likes.setText(likesString);
+        if (likesString.equals("")) {
+            holder.likes.setVisibility(View.GONE);
+        } else {
+            holder.likes.setText(likesString);
+        }
     }
 
     /**

@@ -408,13 +408,23 @@ public class ViewPostFragment extends Fragment {
         }
         UniversalImageLoader.setImage(mUserAccountSettings.getProfile_photo(),mProfileImage,null,"");
         mUsername.setText(mUserAccountSettings.getUsername());
-        mLikes.setText(mLikesString);
-        mCaption.setText(mPhoto.getCaption());
+
+        if(mLikesString.equals("")){
+            mLikes.setVisibility(View.GONE);
+        }else{
+            mLikes.setText(mLikesString);
+        }
+
+        if(mPhoto.getCaption().equals("")){
+            mCaption.setVisibility(View.GONE);
+        }else{
+            mCaption.setText(mPhoto.getCaption());
+        }
 
         if(mPhoto.getComments().size() > 0){
             mComments.setText("View all "+ mPhoto.getComments().size() + " comments");
         } else{
-            mComments.setText("");
+            mComments.setVisibility(View.GONE);
 
         }
 

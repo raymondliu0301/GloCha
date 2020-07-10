@@ -1,5 +1,6 @@
 package com.example.glocha.Search;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -58,7 +59,7 @@ public class SearchActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.listView);
         Log.d(TAG, "onCreate: starting");
 
-        hideSoftKeyboard();
+        //hideSoftKeyboard();
         setupBottomNavigationView();
         initTextListener();
     }
@@ -138,12 +139,22 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-    private void hideSoftKeyboard(){
-        if(getCurrentFocus() != null){
-            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        }
-    }
+//    private void hideSoftKeyboard(){
+////        InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+////        View view = this.getCurrentFocus();
+////        Log.d(TAG, "hideSoftKeyboard");
+////
+////        if(view == null){
+////            view = new View(this);
+////        }
+////        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+////        view.clearFocus();
+//
+////        if(getCurrentFocus() != null){
+////            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+////            imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+////        }
+//    }
 
     //BottomNavigationView setup
     private void setupBottomNavigationView(){

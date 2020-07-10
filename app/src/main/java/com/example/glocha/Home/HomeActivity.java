@@ -77,7 +77,7 @@ public class HomeActivity extends AppCompatActivity implements
 
     public void onCommentThreadSelected(Photo photo, String callingActivity){
         Log.d(TAG, "onCommentThreadSelected: selected a comment thread");
-
+        Log.d(TAG, "onCommentThreadSelected: " + photo);
         ViewCommentsFragment fragment = new ViewCommentsFragment();
         Bundle args = new Bundle();
         args.putParcelable(getString(R.string.photo), photo);
@@ -97,7 +97,7 @@ public class HomeActivity extends AppCompatActivity implements
     }
 
     public void showLayout(){
-        Log.d(TAG, "hideLayout: showing layout");
+        Log.d(TAG, "showLayout: showing layout");
         mRelativeLayout.setVisibility(View.VISIBLE);
         mFrameLayout.setVisibility(View.GONE);
     }

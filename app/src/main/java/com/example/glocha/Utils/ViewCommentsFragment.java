@@ -79,6 +79,8 @@ public class ViewCommentsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView: ViewCommentsFragment");
+        
         View view = inflater.inflate(R.layout.fragment_view_comments, container, false);
         mBackArrow = (ImageView) view.findViewById(R.id.backArrow);
         mCheckMark = (ImageView) view.findViewById(R.id.ivPostComment);
@@ -100,7 +102,8 @@ public class ViewCommentsFragment extends Fragment {
     }
 
     private void setupWidgets(){
-
+        Log.d(TAG, "setupWidgets: commentsize of mPhoto: " + mPhoto.getComments().size() + mPhoto);
+        Log.d(TAG, "setupWidgets: commentsize of mComment: " + mComments.size() + mComments);
         CommentListAdapter adapter = new CommentListAdapter(mContext,
                 R.layout.layout_comment, mComments);
         mListView.setAdapter(adapter);
@@ -176,7 +179,7 @@ public class ViewCommentsFragment extends Fragment {
     }
 
     /**
-     * retrieve the photo from the incoming bundle from profileActivity interface
+     * retrieve the photo from the incoming bundle
      * @return
      */
     private String getCallingActivityFromBundle(){
@@ -235,6 +238,7 @@ public class ViewCommentsFragment extends Fragment {
             }
         };
 
+        Log.d(TAG, "setupFirebaseAuth: commentsize of mPhoto before comment size == 0: " + mPhoto.getComments().size());
         if(mPhoto.getComments().size() == 0){
             mComments.clear();
             Comment firstComment = new Comment();
@@ -243,8 +247,10 @@ public class ViewCommentsFragment extends Fragment {
             firstComment.setDate_created(mPhoto.getDate_created());
             mComments.add(firstComment);
             mPhoto.setComments(mComments);
+            Log.d(TAG, "setupFirebaseAuth: commentsize of mPhoto after comment size ==0: " +mPhoto.getComments().size());
             setupWidgets();
         }
+        Log.d(TAG, "setupFirebaseAuth: commentsize of mPhoto after comment size ==0: " +mPhoto.getComments().size());
 
         myRef.child(mContext.getString(R.string.dbname_photos))
                 .child(mPhoto.getPhoto_id())
@@ -272,14 +278,16 @@ public class ViewCommentsFragment extends Fragment {
                                     photo.setDate_created(objectMap.get(mContext.getString(R.string.field_date_created)).toString());
                                     photo.setImage_path(objectMap.get(mContext.getString(R.string.field_image_path)).toString());
 
+                                    Log.d(TAG, "onDataChange: commentsize of mPhoto before clear: " + mPhoto.getComments().size());
                                     mComments.clear();
+                                    Log.d(TAG, "onDataChange: commentsize of mComment after clear: " + mComments.size());
                                     Comment firstComment = new Comment();
                                     firstComment.setComment(mPhoto.getCaption());
                                     firstComment.setUser_id(mPhoto.getUser_id());
                                     firstComment.setDate_created(mPhoto.getDate_created());
 
                                     mComments.add(firstComment);
-
+                                    Log.d(TAG, "onDataChange: commentsize of mComment after adding first comment: " + mComments.size());
                                     for(DataSnapshot dSnapshot : singleSnapshot.
                                             child(mContext.getString(R.string.field_comments)).getChildren()) {
                                         Comment comment = new Comment();
@@ -288,10 +296,12 @@ public class ViewCommentsFragment extends Fragment {
                                         comment.setDate_created(dSnapshot.getValue(Comment.class).getDate_created());
                                         mComments.add(comment);
                                     }
+                                    Log.d(TAG, "onDataChange: commentsize of mComment after for loop: " + mComments.size());
 
                                     photo.setComments(mComments);
 
                                     mPhoto = photo;
+                                    Log.d(TAG, "onDataChange: commentsize of mPhoto after for loop: " + mPhoto.getComments().size());
 
                                     setupWidgets();
 //                    List<Like> likesList = new ArrayList<Like>();
