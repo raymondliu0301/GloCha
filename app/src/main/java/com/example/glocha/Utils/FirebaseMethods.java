@@ -201,6 +201,7 @@ public class FirebaseMethods {
         Log.d(TAG, "addPhotoToDatabase: adding photo to database");
 
         String tags = StringManipulation.getTags(caption);
+        Log.d(TAG, "addPhotoToDatabase: tag is:" + tags);
         String newPhotoKey = myRef.child(mContext.getString(R.string.dbname_photos)).push().getKey();
         Photo photo = new Photo();
         photo.setChallenge_name(challenge);
