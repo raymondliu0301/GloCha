@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GloCha: Accept Challenge?"
+        android:textSize="21sp"
+        android:id="@+id/dialogName"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="default_CHALLENGE"
+        android:id="@+id/challengeName"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/>
+
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_centerHorizontal="true"
+            android:text="GloCha"
+            android:id="@+id/dialogGloCha"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

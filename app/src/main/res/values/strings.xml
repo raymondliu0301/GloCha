@@ -11,6 +11,7 @@
 
     <!-- dialog names-->
     <string name="confirm_password_dialog">ConfirmPasswordDialog</string>
+    <string name="confirm_challenge_dialog">ConfirmChallengeDialog</string>
 
     <!-- Firebase messages-->
     <string name="auth_failed">Failed to Authenticate</string>
@@ -54,6 +55,7 @@
     <string name="activity_number">activity_number</string>
     <string name="bundle_photo">bundle_photo</string>
     <string name="bundle_user_account_settings">bundle_user_account_settings</string>
+    <string name="bundle_challenge_name">bundle_challenge_name</string>
 
 
     <!-- activity names-->

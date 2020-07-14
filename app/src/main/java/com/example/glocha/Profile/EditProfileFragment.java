@@ -42,7 +42,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditProfileFragment extends Fragment implements
-ConfirmPasswordDialog.OnConfirmPasswordListner{
+ConfirmPasswordDialog.OnConfirmPasswordListener{
 
     @Override
     public void onConfirmPassword(String password) {

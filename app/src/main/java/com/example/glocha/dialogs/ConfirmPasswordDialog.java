@@ -20,10 +20,10 @@ public class ConfirmPasswordDialog extends DialogFragment {
 
     private static final String TAG = "ConfirmPasswordDialog";
 
-    public interface OnConfirmPasswordListner{
-        public void onConfirmPassword (String password);
+    public interface OnConfirmPasswordListener{
+        void onConfirmPassword (String password);
     }
-    OnConfirmPasswordListner mOnConfirmPasswordListener;
+    OnConfirmPasswordListener mOnConfirmPasswordListener;
 
     //vars
     TextView mPassword;
@@ -69,7 +69,7 @@ public class ConfirmPasswordDialog extends DialogFragment {
         super.onAttach(context);
 
         try{
-            mOnConfirmPasswordListener = (OnConfirmPasswordListner) getTargetFragment();
+            mOnConfirmPasswordListener = (OnConfirmPasswordListener) getTargetFragment();
         }catch(ClassCastException e){
             Log.e(TAG, "onAttach: ClassCastException: " + e.getMessage() );
         }

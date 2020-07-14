@@ -49,56 +49,38 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relLayout_challenge"
+            android:id="@+id/imgLayout"
+            android:background="@color/white">
 
         <com.example.glocha.Utils.SquareImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/post_image"
-            android:layout_below="@id/relLayout_challenge"
             android:scaleType="centerCrop"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/relLayout2"
-            android:layout_below="@+id/post_image"
-            android:background="@color/white">
-
-            <RelativeLayout
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:id="@+id/heartLayout"
-                android:background="@color/white">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:id="@+id/image_heart_red"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/ic_heart_red"
-                    android:visibility="invisible"/>
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:id="@+id/image_heart"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/ic_heart_white"
-                    android:visibility="visible"/>
-
-            </RelativeLayout>
 
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:id="@+id/speech_bubble"
-                android:layout_toEndOf="@id/heartLayout"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/ic_speech_bubble"
-                android:visibility="visible"
-                android:layout_centerVertical="true"/>
+                android:id="@+id/image_heart_red"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_heart_red"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:id="@+id/image_heart"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_heart_white"
+                android:visibility="visible"/>
 
         </RelativeLayout>
 
@@ -106,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/relLayout3"
-            android:layout_below="@id/relLayout2"
+            android:layout_below="@id/imgLayout"
             android:padding="20dp"
             android:background="@color/white">
 

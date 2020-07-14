@@ -2,6 +2,7 @@ package com.example.glocha.Utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -15,11 +16,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.glocha.Home.HomeActivity;
 import com.example.glocha.Profile.ProfileActivity;
 import com.example.glocha.R;
+import com.example.glocha.dialogs.ConfirmChallengeDialog;
 import com.example.glocha.models.Comment;
 import com.example.glocha.models.Like;
 import com.example.glocha.models.Photo;
@@ -72,7 +75,7 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
         String likesString;
         TextView username, timeDelta, caption, likes, comments, challenge;
         SquareImageView image;
-        ImageView heartRed, heartWhite, comment;
+        ImageView heartRed, heartWhite;
 
         UserAccountSettings settings = new UserAccountSettings();
         User user = new User();
@@ -98,7 +101,7 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
             holder.image = (SquareImageView) convertView.findViewById(R.id.post_image);
             holder.heartRed = (ImageView) convertView.findViewById(R.id.image_heart_red);
             holder.heartWhite = (ImageView) convertView.findViewById(R.id.image_heart);
-            holder.comment = (ImageView) convertView.findViewById(R.id.speech_bubble);
+            //holder.comment = (ImageView) convertView.findViewById(R.id.speech_bubble);
             holder.likes = (TextView) convertView.findViewById(R.id.image_likes);
             holder.comments = (TextView) convertView.findViewById(R.id.image_comments_link);
             holder.challenge = (TextView) convertView.findViewById(R.id.challenge_name);
@@ -115,7 +118,7 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        //get the current users username (need for checking lik string)
+        //get the current users username (need for checking like string)
         getCurrentUsername();
 
         //get likes string
@@ -207,17 +210,17 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
                     });
 
                     holder.settings = singleSnapshot.getValue(UserAccountSettings.class);
-                    holder.comment.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            getItem(position).getComments().clear();
-                            ((HomeActivity)mContext).onCommentThreadSelected(getItem(position),
-                                    mContext.getString(R.string.home_activity));
-
-                            //another thing?
-                            ((HomeActivity)mContext).hideLayout();
-                        }
-                    });
+//                    holder.comment.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            getItem(position).getComments().clear();
+//                            ((HomeActivity)mContext).onCommentThreadSelected(getItem(position),
+//                                    mContext.getString(R.string.home_activity));
+//
+//                            //another thing?
+//                            ((HomeActivity)mContext).hideLayout();
+//                        }
+//                    });
                 }
             }
 
@@ -291,6 +294,14 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
         public boolean onDoubleTap(MotionEvent e) {
 
             Log.d(TAG, "onDoubleTap: double tap detected.");
+
+            FragmentActivity activity = (FragmentActivity) (mContext);
+            FragmentManager fm = activity.getSupportFragmentManager();
+            ConfirmChallengeDialog dialog = new ConfirmChallengeDialog();
+            Bundle args = new Bundle();
+            args.putString(mContext.getString(R.string.bundle_challenge_name), mHolder.photo.getChallenge_name());
+            dialog.setArguments(args);
+            dialog.show(fm, mContext.getString(R.string.confirm_challenge_dialog));
 
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
             Query query = reference
